@@ -15,7 +15,7 @@ def load(fname):
 def center_of_mass(pos, m):
     return (pos * m[:, None]).sum(axis=0) / m.sum()
 
-def combine_planets_gizmo_ic(fname1, fname2, fnameo, rsep,
+def combine_planets_gizmo_ic(fname1, fname2, fnameo, rsep, vimp,
                               mass_unit=(1/62.46)*M_earth,
                               length_unit=R_earth,
                               vel_unit=1e3):
@@ -35,7 +35,7 @@ def combine_planets_gizmo_ic(fname1, fname2, fnameo, rsep,
 
     pos_i, vel_i = woma.impact_pos_vel_b_v_c_r(
         b=np.sin(np.deg2rad(45)),
-        v_c=v_esc,
+        v_c= vimp*v_esc,
         r=rsep * (R1 + R2),
         R_t=R1, R_i=R2,
         M_t=M1, M_i=M2,
@@ -121,5 +121,6 @@ if __name__ == "__main__":
         fname1,
         fname2,
         fnameo,
-        10
+        10,
+        1
     )
