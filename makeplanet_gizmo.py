@@ -174,7 +174,7 @@ def save_planet_gizmo_ic(
 
 if __name__ == "__main__":
     # Define planet properties
-    mplanet = 0.85 * M_earth
+    mplanet = 0.5 * M_earth
 
     # Create WOMA planet with two layers: iron core + forsterite mantle
     planet = woma.Planet(
@@ -188,15 +188,15 @@ if __name__ == "__main__":
 
     # Generate radial profile within reasonable bounds
     planet.gen_prof_L2_find_R_R1_given_M1_M2(
-        R_min=0.95 * R_earth,
-        R_max=1.05 * R_earth
+        R_min=0.8 * R_earth, # (mplanet/M_earth)**0.25 *0.95
+        R_max=0.9 * R_earth  # (mplanet/M_earth)**0.25 *1.08
     )
 
     # Optional: plot density, mass, pressure, temperature profiles
     plot_spherical_profiles(planet)
 
     # Save the planet as GIZMO initial conditions
-    fname = 'n85.hdf5'
+    fname = f"n{mplanet/M_earth*100:.0f}.hdf5"
     save_planet_gizmo_ic(
         planet,
         fname,
