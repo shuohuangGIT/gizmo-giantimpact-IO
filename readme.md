@@ -8,3 +8,9 @@ combine two planets in two different hdf5 files, initilize impact separation, ve
 
 3. makeplanet_plot.ipynb:
 plot hdf5
+
+4. plotsphere.py: 
+plot spatial distribution of particles
+
+5. plotprofile.py:
+plot mass, temperature, energy and entropy distribution of particles
